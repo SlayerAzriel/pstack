@@ -1,0 +1,16 @@
+{
+  "description": "Injects a one-line pstack mode reminder on every user prompt.",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/pin.mjs\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

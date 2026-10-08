@@ -1,0 +1,11 @@
+{
+  "name": "pstack-mode-pin",
+  "displayName": "pstack mode pin",
+  "version": "0.1.0",
+  "description": "Reminds the agent on every prompt to apply /pstack:mode when a playbook matches. Install alongside the pstack plugin when you want the mode on for every turn without editing CLAUDE.md.",
+  "author": {
+    "name": "pstack-claude maintainers"
+  },
+  "license": "MIT",
+  "keywords": ["pstack", "mode", "hooks"]
+}

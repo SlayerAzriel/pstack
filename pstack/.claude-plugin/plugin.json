@@ -1,0 +1,14 @@
+{
+  "name": "pstack",
+  "displayName": "pstack",
+  "version": "0.15.15-claude.1",
+  "description": "if you want to go fast, go deep first. pstack helps you write less, but higher quality code: a router skill with 23 playbooks, 25 situational skills, 24 one-rule principles, and a verification-first toolchain. Claude Code port of Lauren Tan's pstack.",
+  "author": {
+    "name": "Lauren Tan",
+    "url": "https://x.com/poteto"
+  },
+  "homepage": "https://github.com/cursor/plugins/tree/main/pstack",
+  "repository": "https://github.com/cursor/plugins",
+  "license": "MIT",
+  "keywords": ["pstack", "mode", "workflow", "principles", "agent-style", "subagents", "unslop", "verification"]
+}

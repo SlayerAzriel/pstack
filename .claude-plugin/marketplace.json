@@ -1,0 +1,23 @@
+{
+  "name": "pstack-claude",
+  "owner": {
+    "name": "pstack-claude maintainers"
+  },
+  "description": "pstack, Lauren Tan's rigorous engineering skills for agents, ported to Claude Code.",
+  "plugins": [
+    {
+      "name": "pstack",
+      "source": "./pstack",
+      "description": "if you want to go fast, go deep first. A router skill with 23 playbooks, 25 situational skills, 24 one-rule principles, and a verification-first toolchain, ported from Cursor to Claude Code.",
+      "category": "developer-tools",
+      "tags": ["workflow", "principles", "review", "verification", "subagents"]
+    },
+    {
+      "name": "pstack-mode-pin",
+      "source": "./mode-pin",
+      "description": "Optional. Reminds the agent on every prompt to apply /pstack:mode when a playbook matches, the Claude Code stand-in for Cursor's pinned Custom Mode.",
+      "category": "developer-tools",
+      "tags": ["workflow", "hooks"]
+    }
+  ]
+}
