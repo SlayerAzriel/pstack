@@ -13,11 +13,11 @@ Fork it. Improve it. Make it yours. PRs are welcome.
 ## Install
 
 ```text
-/plugin marketplace add <owner>/pstack-claude
+/plugin marketplace add SlayerAzriel/pstack
 /plugin install pstack@pstack-claude
 ```
 
-For a local checkout, `claude --plugin-dir ./pstack-claude/pstack`.
+For a local checkout, `claude --plugin-dir ./pstack/pstack`.
 
 ## Get started
 

@@ -7,11 +7,11 @@ In this page you install the plugin, pick which models pstack uses, and run your
 In a Claude Code chat, run:
 
 ```text
-/plugin marketplace add <owner>/pstack-claude
+/plugin marketplace add SlayerAzriel/pstack
 /plugin install pstack@pstack-claude
 ```
 
-For a local checkout, start Claude Code with `claude --plugin-dir ./pstack-claude/pstack` instead. Either way, `/pstack:ask` answers from inside the session once the plugin is loaded.
+For a local checkout, start Claude Code with `claude --plugin-dir ./pstack/pstack` instead. Either way, `/pstack:ask` answers from inside the session once the plugin is loaded.
 
 ## Pick your models
 

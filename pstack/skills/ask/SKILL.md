@@ -34,7 +34,7 @@ When the model rule is missing and it matters, ask whether the user wants to pic
 
 ## Get set up
 
-1. Install with `/plugin marketplace add <owner>/pstack-claude`, then `/plugin install pstack@pstack-claude`. For a local checkout, start Claude Code with `claude --plugin-dir ./pstack-claude/pstack`.
+1. Install with `/plugin marketplace add SlayerAzriel/pstack`, then `/plugin install pstack@pstack-claude`. For a local checkout, start Claude Code with `claude --plugin-dir ./pstack/pstack`.
 2. Run [`/pstack:setup`](../setup/SKILL.md). It asks for a reasoning budget, maps a model to each role, and writes `~/.claude/pstack-models.md`. The file applies to new sessions.
 3. Start a real task with `/pstack:mode`, a goal, and a check that can pass or fail.
 

@@ -1,4 +1,4 @@
-# pstack-claude
+# pstack for Claude Code
 
 A Claude Code port of [pstack](https://github.com/cursor/plugins/tree/main/pstack), Lauren Tan's set of rigorous engineering skills for coding agents. The original targets Cursor. This repository carries the same playbooks, skills, and principles as a Claude Code plugin, plus a verification skill generator built for Claude Code's tools.
 
@@ -9,14 +9,14 @@ pstack's own summary still applies: if you want to go fast, go deep first. The g
 From a session, with this repository pushed to GitHub:
 
 ```text
-/plugin marketplace add <owner>/pstack-claude
+/plugin marketplace add SlayerAzriel/pstack
 /plugin install pstack@pstack-claude
 ```
 
 From a local checkout, for development:
 
 ```bash
-claude --plugin-dir ./pstack-claude/pstack
+claude --plugin-dir ./pstack/pstack
 ```
 
 Then run `/pstack:setup` once to pick models and an effort budget, and start any non-trivial task with `/pstack:mode`. Type `/pstack:ask` with a question when you are not sure which skill fits.
