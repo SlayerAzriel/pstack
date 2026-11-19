@@ -58,12 +58,14 @@ Open a todo list with these steps.
    No summary of this conversation. No hint about what to find, propose or conclude. A role that needs context reads the ledger.
 4. **Handle a role that did not append.** If `open.next` is unchanged when a role returns, spawn a fresh agent once with the same brief. After a second miss, run `ledger abandon --file <file> --reason "<role> did not append twice"` and report it. Never write the part yourself. Never resume the old agent.
 5. **Seal.** When `open.next` is `seal`, run `ledger seal --file <file>`. A refusal lists the problems. They are defects of the cycle. Report them. Do not patch the file.
-6. **Commit.** Stage the cycle file by explicit path and commit it as `ledger: cycle <n> <outcome> <variant>`. Push when the rules of the project allow it.
+6. **Commit.** Stage the cycle file by explicit path and commit it as `ledger: cycle <n> <outcome> <variant>`. The roles commit their own scope, evidence and memory. Push when the rules of the project allow it.
 7. **Reply.** Read Part 5 of the cycle file, and only Part 5.
 
 ## Spawning
 
-Spawn each role in the foreground, one at a time, with no worktree isolation. The roles share one checkout, because the scope commit, the evidence and the ledger all live in it. Run one cycle at a time per ledgers directory. A second program gets its own directory.
+Spawn one role at a time, with no worktree isolation, and never spawn the next role before the previous one has returned. Ask for a foreground run. If the harness starts the agent in the background anyway, end the turn. When its completion notification arrives, run `ledger status` and go on from `open.next`. The runner keeps no state of its own. The cycle file says where the cycle is.
+
+The roles share one checkout, because the scope commit, the evidence and the ledger all live in it. Run one cycle at a time per ledgers directory. A second program gets its own directory.
 
 Each spawn names a role line in `~/.claude/pstack-models.md` and a default. Set `model` to the value of that line, or to the default if the file or the line is missing. Leave `model` unset when the value is `inherit`. Set `effort` from the `# budget` line of that file when one exists.
 

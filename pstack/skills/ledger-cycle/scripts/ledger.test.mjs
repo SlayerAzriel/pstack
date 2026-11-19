@@ -47,7 +47,7 @@ const FACTS = "Reads recorded: 3 in `docs/reads.md:12`. Last read netted -1.1 pe
 const hypothesis = (sha, scope = "docs/v1-scope.md") =>
 	`family: ctx\nvariant: v1\nscope: ${scope}\nscope-commit: ${sha}\n\nStatement: a longer window raises the fold count.\n`;
 const KEEP = "verdict: KEEP\nviability: 70\n\nEvery rubric gate is met.\n";
-const LESSON = (outcome) => `outcome: ${outcome}\n\nThe registered bar was 4 of 5 folds. Observed 2 of 5.\n\n## Chronicle\n\nOne read so far, one kill. Variant v1 is dead at 2 of 5 folds.\n`;
+const LESSON = (outcome) => `outcome: ${outcome}\n\nThe registered bar was 4 of 5 folds. Observed 2 of 5.\n\n### Chronicle\n\nOne read so far, one kill. Variant v1 is dead at 2 of 5 folds.\n`;
 
 function runFullCycle(d) {
 	const { file } = run(d, "new");
@@ -131,7 +131,9 @@ test("revisions are bounded and each round needs a fresh critique", () => {
 	const sha = registerScope(d, "v1-scope.md");
 	const revise = "verdict: REVISE\nfatal-flaw: the kill criterion is not a number\n";
 	for (let round = 1; round <= 3; round++) {
+		assert.equal(run(d, "status").open.round, round, "the Theorist is told the round it opens");
 		assert.equal(part(d, file, "hypothesis", "theorist", hypothesis(sha)).code, 0, `round ${round}`);
+		assert.equal(run(d, "status").open.round, round, "the Critic works in the round of the hypothesis");
 		assert.equal(part(d, file, "hypothesis", "theorist", hypothesis(sha)).code, 1, "two hypotheses in a row");
 		assert.equal(part(d, file, "critique", "critic", revise).code, 0);
 	}
@@ -193,5 +195,7 @@ test("a CRLF checkout still verifies", () => {
 	const file = runFullCycle(d);
 	run(d, "seal", "--file", file);
 	fs.writeFileSync(file, fs.readFileSync(file, "utf8").replace(/\n/g, "\r\n"));
-	assert.equal(run(d, "check", "--file", file).code, 0);
+	fs.writeFileSync(path.join(d, "evidence", "v1.txt"), "folds 2/5\r\n");
+	const c = run(d, "check", "--file", file);
+	assert.equal(c.code, 0, JSON.stringify(c));
 });

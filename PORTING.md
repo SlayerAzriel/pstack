@@ -41,7 +41,7 @@ Every other skill keeps its name, invoked as `/pstack:how`, `/pstack:why`, `/pst
 ## Things added
 
 - `skills/deslop/`. The original depends on `/deslop` from Cursor's `cursor-team-kit`, which is not public here. This port ships a small equivalent.
-- `skills/ledger-cycle/` and five `agents/ledger-*.md` role agents, added in `0.15.15-claude.2`. Not part of the original pstack. One cycle of a pre-registered experiment program through isolated roles that share an append-only ledger, with a CLI (`scripts/ledger.mjs`, tests beside it) that enforces the order of the parts, the registration of the scope in git, and a hash chain. The design adapts the Single Ledger Architecture of Sagnelli et al. (MLST 7 055009, 2026); see `skills/ledger-cycle/references/design.md` for what was kept and what was left out.
+- `skills/ledger-cycle/` and five `agents/ledger-*.md` role agents, added in `0.15.15-claude.2` and corrected in `.3` after a live cycle. Not part of the original pstack. One cycle of a pre-registered experiment program through isolated roles that share an append-only ledger, with a CLI (`scripts/ledger.mjs`, tests beside it) that enforces the order of the parts, the registration of the scope in git, and a hash chain. The design adapts the Single Ledger Architecture of Sagnelli et al. (MLST 7 055009, 2026); see `skills/ledger-cycle/references/design.md` for what was kept and what was left out.
 - `skills/create-verification-skill/` was rewritten for Claude Code and ships a Playwright-over-CDP control CLI template, a SKILL.md template, a CLI and TUI harness recipe, and a `.claude/launch.json` example for the desktop app's browser pane. See its `references/`.
 - `mode-pin/`, described above.
 - `scripts/check-skills.mjs`, described above.

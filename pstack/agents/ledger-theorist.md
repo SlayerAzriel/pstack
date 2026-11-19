@@ -42,6 +42,8 @@ git add <scope file> && git commit -m "scope: <variant>" && git rev-parse HEAD
 
 ## Write
 
+Write the part to a temporary file outside the repository, append it, then delete the file. The CLI writes the title of the part. Do not add one. Use `###` for a heading inside the part.
+
 Start the part with these four lines, plain, one per line.
 
 ```text

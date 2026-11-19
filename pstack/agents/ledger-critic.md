@@ -37,7 +37,9 @@ Answer each check with pass, fail or not applicable, and one line of evidence.
 - `REVISE`: the idea can stand and the scope must change. List each required change as one line the Theorist can act on.
 - `REJECT`: the hypothesis rests on a false fact, repeats a dead variant, or cannot be made decidable.
 
-Start the part with these lines, plain, one per line. The fatal flaw is required unless the verdict is KEEP.
+Write the part to a temporary file outside the repository, append it, then delete the file. The CLI writes the title of the part. Do not add one. Use `###` for a heading inside the part.
+
+Start the part with these lines, plain, one per line. The fatal flaw is required unless the verdict is KEEP. Leave that line out when the verdict is KEEP.
 
 ```text
 verdict: <KEEP, REVISE or REJECT>

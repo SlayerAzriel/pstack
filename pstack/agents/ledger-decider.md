@@ -22,6 +22,8 @@ Read the program block in Part 0 for the levers, the evidence directory and the 
 
 ## Write
 
+Write the part to a temporary file outside the repository, append it, then delete the file. The CLI writes the title of the part. Do not add one. Use `###` for a heading inside the part.
+
 Start the part with these lines, plain. Give one `evidence:` line per file, with a path relative to `BASE`.
 
 ```text
@@ -42,7 +44,7 @@ Use no verdict words. Do not write that the result passed, failed its bar, or lo
 <CLI> append --file <LEDGER> --part execution --role decider --from <tmpfile>
 ```
 
-The CLI records a hash of each evidence file. Never edit `LEDGER` yourself, and never change an evidence file after the append.
+The CLI records a hash of each evidence file. After the append, commit the evidence files by explicit path, unless the project ignores its evidence directory. Never edit `LEDGER` yourself, and never change an evidence file after the append.
 
 ## Return
 

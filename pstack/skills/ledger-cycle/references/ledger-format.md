@@ -17,7 +17,7 @@ A sealed cycle ends with a `ledger:seal` marker that carries the outcome.
 | `hypothesis` | theorist | Part 2. Hypothesis and registered scope | `family:`, `variant:`, `scope:`, `scope-commit:` |
 | `critique` | critic | Part 3. Critique | `verdict:`, and `fatal-flaw:` unless the verdict is `KEEP` |
 | `execution` | decider | Part 4. Execution | `status:`, and one `evidence:` line per file when completed |
-| `lesson` | summarizer | Part 5. Lesson | `outcome:`, and a `## Chronicle` section |
+| `lesson` | summarizer | Part 5. Lesson | `outcome:`, and a `### Chronicle` section |
 
 A required line is plain text at the start of a line: `verdict: KEEP`. A bold label or a list bullet in front of it is not read.
 
@@ -37,9 +37,9 @@ facts            -> lesson (nothing to register)
 - **Facts stay facts.** The facts part is refused when it uses a word that judges or proposes, outside backticks, code fences and quoted lines. It is refused when it cites no source.
 - **The scope is registered first.** The hypothesis is refused unless its scope file is in the named commit and unchanged since. The execution is refused if the scope file changed after that. The execution marker records the blob of the scope that ran, and `check` compares it with the registered commit.
 - **No read without a KEEP.** The execution part is refused unless the latest critique says `KEEP`. A cycle has at most one execution part.
-- **Evidence is pinned.** Each `evidence:` file must exist. The CLI records its hash and size. `check` reports a file that changed as a problem and a file that is absent as a warning.
+- **Evidence is pinned.** Each `evidence:` file must exist. The CLI records its hash and size, with line endings normalised so a converting checkout does not trip it. `check` reports a file that changed as a problem and a file that is absent as a warning.
 - **The outcome matches the cycle.** `pass`, `kill` and `inconclusive` need an execution part. `rejected` needs none.
-- **The chronicle is bounded.** The lesson is refused without a `## Chronicle` section or with one over the word limit.
+- **The chronicle is bounded.** The lesson is refused without a `### Chronicle` section or with one over the word limit.
 - **The file is append-only.** Each marker carries a hash of everything above it. `check` and `seal` recompute the chain. An edit to an earlier part breaks it.
 
 ## Limits

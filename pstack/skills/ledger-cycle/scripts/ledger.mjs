@@ -276,9 +276,11 @@ function lintFacts(body, config) {
 function lastHypothesis(parts) {
 	return [...parts].reverse().find((p) => p.name === "hypothesis");
 }
+// CRLF is hashed as LF, so a checkout that converts line endings does not look like a changed file.
 function hashFile(abs) {
 	const data = fs.readFileSync(abs);
-	return { sha256: crypto.createHash("sha256").update(data).digest("hex"), bytes: data.length };
+	const unix = Buffer.from(data.toString("latin1").replace(/\r\n/g, "\n"), "latin1");
+	return { sha256: crypto.createHash("sha256").update(unix).digest("hex"), bytes: data.length };
 }
 // mode "append" judges new content against the working tree. mode "check" re-judges a written part.
 function rules(part, body, ctx, mode) {
@@ -355,7 +357,7 @@ function rules(part, body, ctx, mode) {
 		else if (NEEDS_RUN.has(outcome) && !executed) problems.push(`outcome ${outcome} needs an execution part; nothing was run this cycle`);
 		else if (outcome === "rejected" && executed) problems.push("outcome rejected means no read was spent, but this cycle has an execution part");
 		const chronicle = section(body, "Chronicle");
-		if (chronicle === null || chronicle === "") problems.push("lesson needs a `## Chronicle` section; the next cycle starts from it");
+		if (chronicle === null || chronicle === "") problems.push("lesson needs a `### Chronicle` section; the next cycle starts from it");
 		else if (words(chronicle) > config.chronicleMaxWords) problems.push(`the chronicle is ${words(chronicle)} words; the limit is ${config.chronicleMaxWords}`);
 	}
 	return { problems, warnings, extra, appendix };
@@ -381,7 +383,12 @@ function checkFile(file, config, base) {
 		outcome = L.seal.outcome;
 		if (outcome !== "abandoned" && (!lesson || field(lesson.body, "outcome") !== outcome)) problems.push("the outcome on the seal does not match the lesson");
 	}
-	return { file, sealed: Boolean(L.seal), outcome, next: L.seal ? [] : w.allowed, round: w.hypotheses + 1, problems, warnings };
+	return { file, sealed: Boolean(L.seal), outcome, next: L.seal ? [] : w.allowed, round: roundOf(w), problems, warnings };
+}
+// The round the next role works in. A new hypothesis opens the next round. Every other part
+// belongs to the round of the latest hypothesis.
+function roundOf(w) {
+	return w.allowed.includes("hypothesis") ? w.hypotheses + 1 : Math.max(1, w.hypotheses);
 }
 
 // ---- commands
@@ -426,7 +433,7 @@ function cmdNew(o) {
 	if (last && !last.L.seal) {
 		const w = walk(last.L.parts, config);
 		throw new Fail(4, `${path.basename(last.f)} is still open`, `resume it at part ${w.allowed.join(" or ")}, or \`abandon\` it with a reason`, {
-			open: { file: last.f, next: w.allowed, round: w.hypotheses + 1 },
+			open: { file: last.f, next: w.allowed, round: roundOf(w) },
 		});
 	}
 	let chronicle = "No prior cycle. The Analyst reads the records of the program from scratch.";

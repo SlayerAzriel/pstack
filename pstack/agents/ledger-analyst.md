@@ -19,7 +19,7 @@ Your brief names `LEDGER` (the cycle file), `CLI` (the ledger command), `DIR` (t
 
 ## Write
 
-Write the part to a temporary file, then append it.
+Write the part to a temporary file outside the repository, append it, then delete the file. The CLI writes the title of the part. Do not add one. Use `###` for a heading inside the part.
 
 ```bash
 <CLI> append --file <LEDGER> --part facts --role analyst --from <tmpfile>
