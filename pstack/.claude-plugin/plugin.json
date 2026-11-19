@@ -1,8 +1,8 @@
 {
   "name": "pstack",
   "displayName": "pstack",
-  "version": "0.15.15-claude.1",
-  "description": "if you want to go fast, go deep first. pstack helps you write less, but higher quality code: a router skill with 23 playbooks, 25 situational skills, 24 one-rule principles, and a verification-first toolchain. Claude Code port of Lauren Tan's pstack.",
+  "version": "0.15.15-claude.2",
+  "description": "if you want to go fast, go deep first. pstack helps you write less, but higher quality code: a router skill with 23 playbooks, 26 situational skills, 24 one-rule principles, and a verification-first toolchain. Claude Code port of Lauren Tan's pstack.",
   "author": {
     "name": "SlayerAzriel"
   },

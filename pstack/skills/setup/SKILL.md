@@ -27,7 +27,7 @@ If `~/.claude/pstack-models.md` exists, read it and treat its `# budget` line an
 - `medium — high effort`
 - `small — medium effort`
 
-**(b) Apply it.** The budget sets the effort every pstack spawn passes in the Agent tool's `effort` field: `unlimited` is `max`, `large` is `xhigh`, `medium` is `high`, `small` is `medium`. It also nudges the model table. `unlimited` moves `hardest tasks` to `fable` when the user has it. `small` moves the code roles (`feature, refactoring`, `bug-fix`, `perf-issue`, `hillclimb`, `swarm workers`, `how explorer`, `why investigators`, `reflect tooling`) to `haiku`. `large` and `medium` keep the defaults. On a re-run, keep any role the user changed by hand.
+**(b) Apply it.** The budget sets the effort every pstack spawn passes in the Agent tool's `effort` field: `unlimited` is `max`, `large` is `xhigh`, `medium` is `high`, `small` is `medium`. It also nudges the model table. `unlimited` moves `hardest tasks` to `fable` when the user has it. `small` moves the code roles (`feature, refactoring`, `bug-fix`, `perf-issue`, `hillclimb`, `swarm workers`, `how explorer`, `why investigators`, `reflect tooling`, `ledger analyst`, `ledger decider`) to `haiku`. `large` and `medium` keep the defaults. On a re-run, keep any role the user changed by hand.
 
 **(c) Show the roles and confirm.** Show every role with its model. List each line step 2 dropped. Ask whether to accept as-is or change specific roles, offering the available models plus `inherit`. Prefer AskUserQuestion over free text. For panel roles (`arena runners`, `architect runners`, `interrogate reviewers`) the value is a list, and one subagent runs per entry, alias entries included, so the list length sets the count. `arena cross-judge pool` is also a list, but Arena selects one value from it whose model differs from the parent's when possible. `swarm workers` is the default model for every worker unless a race or comparison assigns another model per arm.
 
@@ -60,6 +60,11 @@ arena cross-judge pool: opus, sonnet
 swarm workers: sonnet
 architect runners: opus, sonnet
 interrogate reviewers: opus, sonnet
+ledger analyst: sonnet
+ledger theorist: opus
+ledger critic: opus
+ledger decider: sonnet
+ledger summarizer: opus
 ```
 
 ### 6. Confirm

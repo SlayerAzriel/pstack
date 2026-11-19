@@ -124,6 +124,7 @@ To keep `/pstack:mode` on across turns, add `Use /pstack:mode for any non-trivia
 | [`/pstack:typescript-best-practices`](./skills/typescript-best-practices/SKILL.md) | you're reading or editing typescript. |
 | [`/pstack:figure-it-out`](./skills/figure-it-out/SKILL.md) | no bundled playbook fits. designs a rigorous, auditable playbook for the task. |
 | [`/pstack:show-me-your-work`](./skills/show-me-your-work/SKILL.md) | you want a reviewable decision trail. logs decisions to a tsv you can commit. |
+| [`/pstack:ledger-cycle`](./skills/ledger-cycle/SKILL.md) | you run a standing program of experiments and each result must be judged against criteria fixed in advance. five isolated roles, one append-only ledger per cycle, one registered read. pairs with `/loop`. |
 | [`/pstack:create-verification-skill`](./skills/create-verification-skill/SKILL.md) | your project has no scripted way to prove app behavior. generates a project-local verify skill with a control CLI and a feature map. |
 | [`/pstack:maintain-verification-skill`](./skills/maintain-verification-skill/SKILL.md) | your verify skill's feature map has drifted from the app. |
 | [`/pstack:unslop`](./skills/unslop/SKILL.md) | you're cleaning up writing. removes AI tells. |
@@ -136,9 +137,11 @@ The bare form (`/how`, `/interrogate`) also works when no other installed plugin
 
 ## The `pstack-agent` and Comment Sicko subagents
 
-pstack ships a subagent that runs the mode end to end. Spawn it from a parent agent via [`subagent_type: "pstack-agent"`](./agents/pstack-agent.md) (or `pstack:pstack-agent` if the tool only knows the namespaced name). It reads the mode skill in full, including its inline principles index, before doing any work. Substituting `general-purpose` skips that read and drifts.
+pstack ships a subagent that runs the mode end to end. Spawn it from a parent agent via [`subagent_type: "pstack:pstack-agent"`](./agents/pstack-agent.md). Claude Code registers plugin agents under the plugin's name. It reads the mode skill in full, including its inline principles index, before doing any work. Substituting `general-purpose` skips that read and drifts.
 
-pstack also ships [Comment Sicko](./agents/comment-sicko.md), a comment reviewer available as `subagent_type: "comment-sicko"`. Usually invoke it through [`/pstack:no-comments`](./skills/no-comments/SKILL.md), not directly.
+pstack also ships [Comment Sicko](./agents/comment-sicko.md), a comment reviewer available as `subagent_type: "pstack:comment-sicko"`. Usually invoke it through [`/pstack:no-comments`](./skills/no-comments/SKILL.md), not directly.
+
+The five `ledger-*` agents ([analyst](./agents/ledger-analyst.md), [theorist](./agents/ledger-theorist.md), [critic](./agents/ledger-critic.md), [decider](./agents/ledger-decider.md), [summarizer](./agents/ledger-summarizer.md)) are the roles of [`/pstack:ledger-cycle`](./skills/ledger-cycle/SKILL.md). The skill spawns them. Do not spawn them directly.
 
 ## Principles
 

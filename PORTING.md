@@ -41,6 +41,7 @@ Every other skill keeps its name, invoked as `/pstack:how`, `/pstack:why`, `/pst
 ## Things added
 
 - `skills/deslop/`. The original depends on `/deslop` from Cursor's `cursor-team-kit`, which is not public here. This port ships a small equivalent.
+- `skills/ledger-cycle/` and five `agents/ledger-*.md` role agents, added in `0.15.15-claude.2`. Not part of the original pstack. One cycle of a pre-registered experiment program through isolated roles that share an append-only ledger, with a CLI (`scripts/ledger.mjs`, tests beside it) that enforces the order of the parts, the registration of the scope in git, and a hash chain. The design adapts the Single Ledger Architecture of Sagnelli et al. (MLST 7 055009, 2026); see `skills/ledger-cycle/references/design.md` for what was kept and what was left out.
 - `skills/create-verification-skill/` was rewritten for Claude Code and ships a Playwright-over-CDP control CLI template, a SKILL.md template, a CLI and TUI harness recipe, and a `.claude/launch.json` example for the desktop app's browser pane. See its `references/`.
 - `mode-pin/`, described above.
 - `scripts/check-skills.mjs`, described above.
@@ -61,7 +62,7 @@ Every other skill keeps its name, invoked as `/pstack:how`, `/pstack:why`, `/pst
 
 ## Not verified
 
-- The exact `subagent_type` string for a plugin agent. Docs say the frontmatter `name` is the identifier, and plugin agents are listed as `<plugin>:<name>`. The skills say `pstack-agent` and fall back to `pstack:pstack-agent`.
+- Resolved: a plugin agent is registered as `<plugin>:<name>`. A session with this plugin installed lists `pstack:pstack-agent` and `pstack:comment-sicko`, so the skills now name the agents that way.
 - `${CLAUDE_PLUGIN_ROOT}` and `${CLAUDE_SKILL_DIR}` are substituted in SKILL.md and agent files. They are not substituted inside playbook files read with the Read tool, so the mode skill states its own directory once and playbooks use paths relative to it.
 - The scripts under `skills/mode/scripts/` (orch, watch-pr, check-plan) were copied with path and marker edits only. Their tests were not rerun here. `bun test` in that directory runs them.
 - Nothing in this port has been run inside a live Claude Code session yet. Run `node scripts/check-skills.mjs` and `claude plugin validate ./pstack` first, then a small real task with `/pstack:mode`.

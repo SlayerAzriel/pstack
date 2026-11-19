@@ -87,6 +87,22 @@ The contract above drives one task to one finish condition. Some nights hold mor
 /pstack:mode orchestrate the store migration. own it until every package is converted and merged. i'll check in twice a day.
 ```
 
+## Run a research program as ledger cycles
+
+Some loops spend something every time they measure: a holdout, a backtest window, an eval set you can only trust once. An agent that tunes against that measurement will find a result, whether or not one exists. For that kind of program, use [`/pstack:ledger-cycle`](../../skills/ledger-cycle/SKILL.md) instead of Hillclimb.
+
+```text
+/pstack:ledger-cycle init
+```
+
+```text
+/loop /pstack:ledger-cycle
+```
+
+Each firing runs one cycle through five fresh subagents that share only a ledger file. An Analyst reports numbers with sources and may not propose anything. A Theorist registers one scope in git before anything runs. A Critic attacks it against your project's rubric, and its default is to refuse. A Decider runs the registered command once. A Summarizer judges the result against the registered criteria and writes the 250-word chronicle the next cycle starts from. A CLI is the only writer of the ledger. It refuses a part that is out of order, a scope that changed after it was registered, and a read without the Critic's KEEP.
+
+You steer between cycles by editing `ledgers/directive.md`. Plain sentences set priorities and vetoes. `STATUS: pause` halts the loop at the next cycle boundary. In the morning, read the newest cycle file. It is the whole story of one experiment in one page.
+
 ## Run many programs in parallel
 
 A long program needs one coordinator chat that outlives any single task. In Claude Code that is a session you keep open, or resume with `claude --resume`, whose only job is to direct subagents. The coordinator doesn't write code. It spawns workers in their own worktrees, drains their reports, and keeps the lowest unmerged PR green. That's the shape the Orchestrate playbook expects. Start your prompts to the coordinator with `/pstack:mode`, and the subagents it spawns follow the playbooks.

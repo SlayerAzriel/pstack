@@ -85,6 +85,7 @@ The default answer is `/pstack:mode`, which runs most of the others when its ste
 | Vet a performance number before reporting or acting on it | [`/pstack:benchmark-checklist`](../benchmark-checklist/SKILL.md) |
 | Run a large or cross-cutting change, or one to review after stepping away | [`/pstack:figure-it-out`](../figure-it-out/SKILL.md) |
 | Keep a decision log during a run, and review it afterward | [`/pstack:show-me-your-work`](../show-me-your-work/SKILL.md) |
+| Run a program of experiments where each result is judged against criteria fixed in advance | [`/pstack:ledger-cycle`](../ledger-cycle/SKILL.md) |
 | Pick a model for each role and a reasoning budget | [`/pstack:setup`](../setup/SKILL.md) |
 | Turn their own working habits into a personal mode skill | [`/pstack:automate-me`](../automate-me/SKILL.md) |
 | Turn what a finished task taught into skill edits | [`/pstack:reflect`](../reflect/SKILL.md) |
@@ -101,6 +102,7 @@ Close calls:
 - `/pstack:interrogate` reviews the diff. `/pstack:blast-radius` looks for breakage outside the diff and proves the one fact that makes the change safe.
 - `/pstack:recall` rebuilds context across recent chats. Resuming one specific chat or branch is the Session pickup playbook.
 - `/pstack:figure-it-out` designs one rigorous run. The Orchestrate playbook runs a program that spans days and many PRs. The Autonomous run playbook drives one task to a finish condition.
+- `/pstack:ledger-cycle` runs one cycle of a research program: facts, one registered hypothesis, a critique, one read, a lesson. The Hillclimb playbook improves a metric you can measure freely. Use the ledger cycle when each measurement spends something, such as a holdout or a backtest window, and the agent could fool itself.
 
 Not in pstack:
 

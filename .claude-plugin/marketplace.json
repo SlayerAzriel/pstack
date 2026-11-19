@@ -8,7 +8,7 @@
     {
       "name": "pstack",
       "source": "./pstack",
-      "description": "if you want to go fast, go deep first. A router skill with 23 playbooks, 25 situational skills, 24 one-rule principles, and a verification-first toolchain, ported from Cursor to Claude Code.",
+      "description": "if you want to go fast, go deep first. A router skill with 23 playbooks, 26 situational skills, 24 one-rule principles, and a verification-first toolchain, ported from Cursor to Claude Code.",
       "category": "developer-tools",
       "tags": [
         "workflow",
